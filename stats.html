@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"></head>
+<body>
+<div id='content'>
+	<h2 align = 'left'>Towards a Large Corpus of Richly Annotated Web Tables<br>for Knowledge Base Population</h2>
+	<p><b>Authors:</b> Philipp Braukmann, Lorenzo Cazzoli, Basil Ell*, Sherzod Hakimov*, Fabian Kaupmann, Amerigo Mancino, Junaid Altaf Memon, Kai Rother, Abhishek Saini</p>
+<ul id='nav'>
+  <li id='nav_li'><a class ='nav' href="index.html">Introduction</a></li>
+  <li id='nav_li'><a class ='nav' id="active" href="stats.html">Statistics and Data</a></li>
+  <li id='nav_li' style = 'float:right'><a class ='nav'  href="download.html">Downloads</a></li>
+	</ul>
+	<ol>
+	<br>
+	<li id= 'lh3'> Data and Measurements </li>
+		<p>Our scheduler is implemented to work with the specific structure of the WTC dataset. The dataset is divided into 99 tar archives, each of which contain files with tables. The results in this section were computed on a sample of 1.000.000 tables. This sample is constructed by taking the first 62, 500 tables from each of the first 16 archives in the corpus.
+<br><br>			
+In a prior run through the whole WTC corpus, we detected one of the five languages (English, German, Catalan, French, , Spanish) in most tables. Currently we exclude tables in other languages after the language detection step. These tables will still be taken into account for language detection statistics. However, they do not appear in statistics of later tasks such as
+table normalization, entity linking, and literal linking.
+<br><br>			
+Note that in this section we do not evaluate the correctness of the hypotheses created. Rather, we provide data that might tell us something about the nature of the data and our approaches. For example, it is interesting to know how many tables exist where no hypotheses were added or where for a cell that, according to table normalization, contains a literal value and multiple literal linking hypotheses are created that specify that this literal is the object of triples with different subject entities. For example, a value could be the birth date of one entity as well as the foundation date of another entity. These can then be analyzed manually to check whether the tasks need to be improved or whendevising more advanced tasks, such as triplification.
+		</p>
+	<br>
+		<ol>
+	<li id = 'lh4'> Scheduling Task</li>
+	 <p>For the scheduling task, we measured with two main types of metrics: computation time and the number of hypotheses created by each task. The complete processing of one table took an average of 0.9s (±116.1s). Average values for other tasks are: 0.00005s (±0.001s) for table exclusion, 0.014 s(±0.015s) for language detection, 0.003s (±0.2s) for table normalization, 0.005s (±0.36s) for entity linking, and 3.2s (±213.5s) for literal linking. Other tasks 9 such as table classification, orientation detection, and table segmentation are done by the scheduler and we did not measure them in more detail.
+		 <br>
+The processing of 1,000,000 tables took 266h. Table exclusion took 1min, language detection took 1.3h, table normalization took 14min, entity linking took 31min and literal linking took 264h. Per table, language detection created an average of 1.1 hypotheses (±0.4), table normalization created an average of 220 hypotheses (±1360), entity linking created an average of 270.6 hypotheses (±2117), and literal linking created an average of 0.01 hypotheses (±0.4). Relative to the number of cells in a table, table normalization created 2.3 hypotheses(±1.02), entity linking created 2.7 hypotheses (±2.77), and literal linking created 0.00007 hypotheses (±0.002). For the tasks orientation detection and table classification, for each table one hypothesis was created which is based on the WTC data.
+		 <br>For Visualisation of Measurements <a href='sc.html'>Click here.</a></p>
+	<br>
+	<li id = 'lh4'>Table Orientation Detection Task (WTC task)</li>
+	 <p>In our sample of 1,000,000 tables, we detected headers for 332,676 tables. Note that header detection happened after the exclusion based on table type. Therefore, the 332,676 tables with a header account for 95% of the tables that were not excluded.
+		 <br>For Visualisation of Measurements <a href='tod.html'>Click here.</a></p>
+	<br>
+	<li id = 'lh4'>Table Classification Task (WTC task)</li>
+	 <p>For Visualisation of Measurements <a href='tc.html'>Click here.</a></p>
+	<br>
+	<li id = 'lh4'>Table Exclusion Task (partially a WTC task)</li>
+	 <p>50,716 out of 1,000,000 tables were excluded because of the table type. There were no occurrences of exclusion after language detection or
+entity linking. The remaining 349,284 tables went through all processing steps. <br>		 
+		 For Visualisation of Measurements <a href='te.html'>Click here.</a></p>
+	<br>
+	<li id = 'lh4'>Language Detection Task</li>
+	 <p>From all the tables that were not excluded, English was detected for 321,066 tables (91.9%). The next most frequently occurring languages were German (20,464 / 5.8%), Catalan (7,248 / 2.1%), French (5,568 / 1.6%) and Spanish (4697 / 1.3%). While for most tables we detected only one language, for 11.2% of tables we detected multiple languages. The most common combination is English and German, accounting for 32.4% of tables with multiple languages. Other common combinations are English and Catalan (7.5%) and English and French (3.1%). <br>
+		 For Visualisation of Measurements <a href='ld.html'>Click here.</a></p>
+	<br>
+	<li id = 'lh4'>Table Normalization Task</li>
+	 <p>The task received 315,994 Web tables and generated at least one hypothesis on 315,994 tables (100%), due to the plain hypothesis. We created a total of 35,352,807 hypotheses (including the plain hypotheses) with an average of 1.29 hypotheses created per cell.
+580 hypotheses are related to kg ,1,525to km, 6,362,567 are hypotheses on integers and 688,143 are hypotheses on floats. Furthermore, 832,132 is the total number of hypotheses generated for dates, which is split into 362,649 for the Mon DD, YYYY form, 62,142 for the YYYY-MM-D form, 138,912 for the DD.MM.YYYY form, and 268,429 for the MM.DD.YYYY form. The highest number of hypotheses is made in a table composed of 44,373 cells where 65,288 hypotheses are created. <br>
+For Visualisation of Measurements <a href='tn.html'>Click here.</a></p>
+	<br>
+	<li id = 'lh4'>Entity Linking Task</li>
+	 <p>n the Entity Linking task, we measured how many entity linking hypotheses (distinguished between resources, classes and properties) were created on average per table, row, column, and cell. The XXX task has generated at least one hypothesis on YYY tables [ZZZ%].
+		 <br>
+		 For Visualisation of Measurements <a href='el.html'>Click here.</a></p>
+	<br>
+	<li id = 'lh4'>Literal Linking Task</li>
+	 <p>The literal linking task is processing only tables with at least one entity linking hypothesis. For the tables where at least one literal was linked, on average 0.08 literals per row were linked and in average 0% of the cells are related to two different entities. At least one hypothesis was generated for 556 tables(0.2%). We found that the top 5 properties for occurrence are dbp:dateOfBirth, dbp:birthDate, dbo:percentageOfAreaWater, dbp:released, and dbo:birthDate. For all these properties the object is either a numerical value or a date. Our current implementation might be too restrictive to match strings. <br>
+		 For Visualisation of Measurements <a href='ll.html'>Click here.</a></p>
+		</ol>
+		</ol>
+		</div>
+</body>
+		<br><br><br>
+	<footer id="acknowledgement">
+		<p align= 'center'>This Site has details about project (LD4IE2017-ISY-WTU) done by Master's Students at University of Bielefeld </p>
+	</footer>
+
+</html>
